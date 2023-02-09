@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.function.Predicate;
 
 public class Main {
     public static void main(String[] args) {
@@ -12,10 +13,12 @@ public class Main {
         list.add((new Person("Artem", "Petrov-Platonov-Korsakov-Sidorov", 30)));
         list.add((new Person("Igor", "Denisov-Sidorov", 35)));
         list.add((new Person("Alex", "Ivanov-Ilyin-Korsakov", 45)));
+        list.add((new Person("Sergei", "Ivanov Gavrilov", 18)));
+        list.add((new Person("Nikita", "Dobrynin", 17)));
 
-        NoblePersonComparator comparator = new NoblePersonComparator(2);
+        Predicate<Person> personPredicate = (Person p) -> p.getAge() < 18;
 
-        list.sort(comparator);
+        list.removeIf(personPredicate);
 
         for (Person person :
                 list) {
